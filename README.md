@@ -1,1 +1,1 @@
-# Binary to Decimal Converter
+# Binary to IP Address Converter
