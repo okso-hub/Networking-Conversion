@@ -11,7 +11,7 @@ def split_binary(bin):
     return split_strings
 
 
-def generate_decimal(bin, binaries):
+def generate_ip(binaries):
     decimals = []
 
     for i in binaries:
@@ -26,17 +26,34 @@ def generate_decimal(bin, binaries):
     return ip[:-1]
 
 
+getbinary = lambda x, n: format(x, 'b').zfill(n)
+
+
+def generate_binary(ip):
+    binary = ""
+
+    for i in ip.split("."):
+        binary += getbinary(int(i), 8)
+
+    return binary
+
+
 def main():
-    BINARY = input("Enter binary number: ")
+    choice = int(input("Choose a mode: \n1: Binary to IP \n2: IP to binary\n"))
 
-    list = split_binary(BINARY)
+    if choice == 1:
+        BINARY = input("Enter binary number: ")
+        list = split_binary(BINARY)
+        IP_ADDRESS = generate_ip(list)
+        clear()
+        print(f"Binary number: {BINARY} \nIP address: {IP_ADDRESS}")
 
-    IP_ADDRESS = generate_decimal(BINARY, list)
-
-    clear()
-    print(f"Binary number: {BINARY} \nIP address: {IP_ADDRESS}")
+    elif choice == 2:
+        IP = input("Enter IP adress: ")
+        solution = generate_binary(IP)
+        clear()
+        print(f"IP Adress: {IP} \nBinary number: {solution}")
     
-
 
 if __name__ == "__main__":
     main()
