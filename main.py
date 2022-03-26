@@ -38,8 +38,23 @@ def generate_binary(ip):
     return binary
 
 
+def generate_network_adress(ip, sub):
+    network_address = ""
+
+    IP = generate_binary(ip)
+    SUB = generate_binary(sub)
+
+    for i in range(32):
+        if IP[i] == "1" and SUB[i] == "1":
+            network_address += "1"
+        else:
+            network_address += "0"
+    
+    return generate_ip(split_binary(network_address))
+
+
 def main():
-    choice = int(input("Choose a mode: \n1: Binary to IP \n2: IP to binary\n"))
+    choice = int(input("Choose a mode: \n1: Binary to IP \n2: IP to binary \n3: Generate Subnet Mask\n"))
 
     if choice == 1:
         BINARY = input("Enter binary number: ")
@@ -53,7 +68,13 @@ def main():
         solution = generate_binary(IP)
         clear()
         print(f"IP Adress: {IP} \nBinary number: {solution}")
-    
+    elif choice == 3:
+        sub = generate_network_adress(
+            ip = str(input("Enter the IP address: ")),
+            sub = str(input("Enter the subnet mask: "))
+        )
+        print(f"The subnet mask is {sub}")
+
 
 if __name__ == "__main__":
     main()
